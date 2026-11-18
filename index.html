@@ -125,7 +125,7 @@
       <div>
         <h1 id="pageTitle">What do you want to sell today?</h1>
         <div class="ip-line">
-          Your IP address: <strong id="ipAddress">Checking…</strong>
+          Your Browser ID: <strong id="ipAddress">Loading...</strong>
         </div>
       </div>
     </div>
@@ -340,11 +340,13 @@
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-  import {
-    getAuth,
-    signInAnonymously,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {
+  getAuth,
+  signInAnonymously,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 
   // YOUR FIREBASE CONFIGURATION
@@ -475,32 +477,22 @@
 
   updatePlan();
 
+// PERSISTENT BROWSER ID
 
-  // GET USER IP ADDRESS
+function getBrowserId() {
+  let id = localStorage.getItem("salesagent_browser_id");
 
-  async function getIP() {
-
-    try {
-
-      const r = await fetch("https://api.ipify.org?format=json");
-
-      if (!r.ok) throw new Error();
-
-      const d = await r.json();
-
-      userIP = d.ip || "Unavailable";
-
-    } catch {
-
-      userIP = "Unavailable";
-
-    }
-
-    $("ipAddress").textContent = userIP;
-
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("salesagent_browser_id", id);
   }
 
-  getIP();
+  return id;
+}
+
+const browserId = getBrowserId();
+
+$("ipAddress").textContent = browserId;
 
 
   // CLOUDINARY IMAGE UPLOAD
@@ -1277,9 +1269,7 @@
       minLeads: p.minL,
 
       maxLeads: p.maxL,
-
-      userIP: userIP,
-
+      browserId: browserId,
       ownerUid: currentUser.uid,
 
       updatedAt: serverTimestamp()
@@ -1351,34 +1341,40 @@
 
 
   // FIREBASE ANONYMOUS AUTHENTICATION
-
+async function initializeUserAuth() {
   try {
+    await setPersistence(auth, browserLocalPersistence);
 
-    await signInAnonymously(auth);
+    let user = await new Promise(resolve => {
+      const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        unsubscribe();
+        resolve(currentUser);
+      });
+    });
 
-  } catch (e) {
-
-    console.error(e);
-
-    setStatus(
-      "Firebase anonymous sign-in failed. Enable Anonymous sign-in in Firebase Authentication.",
-      "error"
-    );
-
-  }
-
-
-  // AUTH STATE LISTENER
-
-  onAuthStateChanged(auth, user => {
+    if (!user) {
+      const result = await signInAnonymously(auth);
+      user = result.user;
+    }
 
     currentUser = user;
 
-    if (user) {
-      loadProducts();
-    }
+    console.log("SalesAgent UID:", currentUser.uid);
+    console.log("SalesAgent Browser ID:", browserId);
 
-  });
+    await loadProducts();
+
+  } catch (error) {
+    console.error("Authentication error:", error);
+
+    setStatus(
+      "Authentication failed: " + error.message,
+      "error"
+    );
+  }
+}
+
+initializeUserAuth();
 
 </script>
 
