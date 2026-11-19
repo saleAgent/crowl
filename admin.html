@@ -311,10 +311,6 @@ stopListener();
 }
 
 stopListener = onSnapshot(
-  products = snap.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
 collection(db,"products"),
 
 snap=>{
