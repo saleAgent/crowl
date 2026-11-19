@@ -1317,6 +1317,15 @@ $("ipAddress").textContent = browserId;
       await loadProducts();
 
       resetForm();
+      await loadProducts();
+
+resetForm();
+
+// Show success message after resetting the form
+setStatus(
+  "🎉 Congratulations! Your product has been submitted successfully!",
+  "ok"
+);
 
     } catch (err) {
 
