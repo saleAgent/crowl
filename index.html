@@ -90,6 +90,61 @@
       .panel{padding:18px 14px}
       .topbar{align-items:flex-start;gap:10px}
     }
+    .review-card {
+  max-width: 400px;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  background: white;
+  padding: 22px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.customer-photo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.stars {
+  color: #f5a623;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.shop-name {
+  color: #198754;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+}
+
+.admin-reply {
+  margin-top: 18px;
+  margin-left: 20px;
+  padding: 15px;
+  background: #f0f7ff;
+  border-left: 3px solid #0d6efd;
+  border-radius: 8px;
+}
+
+.admin-title {
+  color: #0d6efd;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.admin-text {
+  color: #495057;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
   </style>
 </head>
 <body>
@@ -1386,6 +1441,397 @@ async function initializeUserAuth() {
 initializeUserAuth();
 
 </script>
+  <marquee>
+<table>
+  <tr>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+    <td>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <div class="review-card">
+
+        <!-- Rating -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="stars">★★★★★</div>
+          <span class="badge bg-success-subtle text-success">
+            Verified Review
+          </span>
+        </div>
+
+        <!-- Customer -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/150?img=12"
+               class="customer-photo"
+               alt="Customer">
+
+          <div>
+            <h6 class="fw-bold mb-1">Rahul Sharma</h6>
+            <div class="shop-name">Sharma Electronics</div>
+            <small class="text-muted">Kolkata, West Bengal</small>
+          </div>
+        </div>
+
+        <!-- Customer Review -->
+        <p class="review-text mb-2">
+          Sales Agent helped me discover potential customers
+          in my target location. It made my customer research
+          easier and helped my business generate new enquiries.
+        </p>
+
+        <small class="text-muted">20 November 2026</small>
+
+        <!-- Admin Reply -->
+        <div class="admin-reply">
+
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="admin-title">
+              <i class="bi bi-reply-fill"></i>
+              Sales Agent – Admin Reply
+            </span>
+            <span class="badge bg-primary">Official</span>
+          </div>
+
+          <p class="admin-text mb-2">
+            Thank you, Rahul, for trusting Sales Agent!
+            We're happy that our platform helped your
+            business discover new opportunities.
+            Wishing you continued success!
+          </p>
+
+          <small class="text-muted">21 November 2026</small>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div></td>
+  </tr>
+</table>
+    
+  </marquee>
 
 </body>
 </html>
