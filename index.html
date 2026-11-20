@@ -90,114 +90,118 @@
       .panel{padding:18px 14px}
       .topbar{align-items:flex-start;gap:10px}
     }
-   /* Scoped CSS - marquee ke baaki design ko affect nahi karega */
-
-.sa-review-card {
-    display: inline-block;
-    width: 320px;
-    max-width: 320px;
-    padding: 20px;
-    margin: 5px;
-    background: #fff;
-    border: 1px solid #e9ecef;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-
-    /* Important fixes */
-    white-space: normal !important;
-    overflow-wrap: anywhere;
-    word-break: normal;
-    vertical-align: top;
-    box-sizing: border-box;
+.review-slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
 }
 
-.sa-review-card * {
-    white-space: normal !important;
-    box-sizing: border-box;
+.review-track {
+  display: flex;
+  width: max-content;
+  animation: slideReviews 12s linear infinite;
 }
 
-.sa-review-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
+.review-slider:hover .review-track {
+  animation-play-state: paused;
 }
 
-.sa-review-stars {
-    color: #f5a623;
-    font-size: 20px;
-    letter-spacing: 2px;
+.review-card {
+  flex: 0 0 320px;
+  width: 320px;
+  margin-right: 12px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,.07);
+  box-sizing: border-box;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
 }
 
-.sa-review-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
+.review-card * {
+  white-space: normal !important;
+  box-sizing: border-box;
 }
 
-.sa-review-photo {
-    width: 55px;
-    height: 55px;
-    min-width: 55px;
-    border-radius: 50%;
-    object-fit: cover;
+.review-stars {
+  color: #f5a623;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
-.sa-review-name {
-    font-weight: 700;
-    font-size: 14px;
-    margin: 0 0 5px;
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
 }
 
-.sa-review-shop {
-    color: #198754;
-    font-size: 13px;
-    font-weight: 600;
+.review-photo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.sa-review-text {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.6;
-    margin: 15px 0;
+.review-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 5px;
 }
 
-.sa-review-date {
-    color: #888;
-    font-size: 12px;
+.review-shop {
+  color: #198754;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.sa-admin-reply {
-    margin-top: 18px;
-    padding: 13px;
-    background: #f0f7ff;
-    border-left: 3px solid #0d6efd;
-    border-radius: 8px;
+.review-text {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 15px 0;
 }
 
-.sa-admin-title {
-    color: #0d6efd;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 10px;
+.review-date {
+  font-size: 12px;
+  color: #888;
 }
 
-.sa-admin-text {
-    color: #495057;
-    font-size: 13px;
-    line-height: 1.6;
-    margin-bottom: 10px;
+.admin-reply {
+  margin-top: 16px;
+  padding: 13px;
+  background: #f0f7ff;
+  border-left: 3px solid #0d6efd;
+  border-radius: 8px;
 }
 
-/* Mobile screen */
-@media(max-width: 480px) {
-    .sa-review-card {
-        width: 280px;
-        max-width: 280px;
-    }
+.admin-title {
+  color: #0d6efd;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
+.admin-text {
+  font-size: 13px;
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+@keyframes slideReviews {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media(max-width:480px) {
+  .review-card {
+    flex-basis: 280px;
+    width: 280px;
+  }
+}    
   </style>
 </head>
 <body>
@@ -1497,316 +1501,211 @@ initializeUserAuth();
   <marquee>
 <table>
   <tr>
-    <td><!-- Put this card directly inside marquee TD -->
+    <td><div class="review-card" id="reviewTemplate">
 
-<div class="sa-review-card">
-
-    <div class="sa-review-header">
-        <div class="sa-review-stars">★★★★★</div>
+      <div class="d-flex justify-content-between">
+        <span class="review-stars">★★★★★</span>
         <span class="badge bg-success">Verified</span>
-    </div>
+      </div>
 
-    <div class="sa-review-user">
-
-        <img
-            src="https://i.pravatar.cc/150?img=12"
-            class="sa-review-photo"
-            alt="Customer">
+      <div class="review-user">
+        <img src="https://i.pravatar.cc/150?img=12"
+             class="review-photo">
 
         <div>
-            <p class="sa-review-name">Rahul Sharma</p>
-            <div class="sa-review-shop">
-                Sharma Electronics
-            </div>
-            <small class="text-muted">
-                Kolkata, West Bengal
-            </small>
+          <p class="review-name">Rahul Sharma</p>
+          <div class="review-shop">Sharma Electronics</div>
+          <small>Kolkata, West Bengal</small>
+        </div>
+      </div>
+
+      <p class="review-text">
+        Sales Agent helped me discover potential customers
+        in my target location. It made customer research
+        easier and helped my business generate new enquiries.
+      </p>
+
+      <div class="review-date">20 November 2026</div>
+
+      <div class="admin-reply">
+        <div class="admin-title">
+          Sales Agent – Admin Reply
+          <span class="badge bg-primary">Official</span>
         </div>
 
-    </div>
-
-    <p class="sa-review-text">
-        Sales Agent helped me discover potential
-        customers in my target location. It made
-        customer research easier and helped my
-        business generate new enquiries.
-    </p>
-
-    <div class="sa-review-date">
-        20 November 2026
-    </div>
-
-    <!-- Admin Reply -->
-
-    <div class="sa-admin-reply">
-
-        <div class="sa-admin-title">
-            Sales Agent – Admin Reply
-            <span class="badge bg-primary">Official</span>
-        </div>
-
-        <p class="sa-admin-text">
-            Thank you, Rahul, for trusting Sales Agent!
-            We're happy that our platform helped your
-            business discover new opportunities.
-            Wishing you continued success!
+        <p class="admin-text">
+          Thank you Rahul for trusting Sales Agent!
+          We wish your business continued success.
         </p>
 
-        <div class="sa-review-date">
-            21 November 2026
-        </div>
+        <div class="review-date">21 November 2026</div>
+      </div>
 
-    </div>
+    </div></td>
+    <td><div class="review-card" id="reviewTemplate">
 
-</div></td>
-    <td><!-- Put this card directly inside marquee TD -->
-
-<div class="sa-review-card">
-
-    <div class="sa-review-header">
-        <div class="sa-review-stars">★★★★★</div>
+      <div class="d-flex justify-content-between">
+        <span class="review-stars">★★★★★</span>
         <span class="badge bg-success">Verified</span>
-    </div>
+      </div>
 
-    <div class="sa-review-user">
-
-        <img
-            src="https://i.pravatar.cc/150?img=12"
-            class="sa-review-photo"
-            alt="Customer">
+      <div class="review-user">
+        <img src="https://i.pravatar.cc/150?img=12"
+             class="review-photo">
 
         <div>
-            <p class="sa-review-name">Rahul Sharma</p>
-            <div class="sa-review-shop">
-                Sharma Electronics
-            </div>
-            <small class="text-muted">
-                Kolkata, West Bengal
-            </small>
+          <p class="review-name">Rahul Sharma</p>
+          <div class="review-shop">Sharma Electronics</div>
+          <small>Kolkata, West Bengal</small>
+        </div>
+      </div>
+
+      <p class="review-text">
+        Sales Agent helped me discover potential customers
+        in my target location. It made customer research
+        easier and helped my business generate new enquiries.
+      </p>
+
+      <div class="review-date">20 November 2026</div>
+
+      <div class="admin-reply">
+        <div class="admin-title">
+          Sales Agent – Admin Reply
+          <span class="badge bg-primary">Official</span>
         </div>
 
-    </div>
-
-    <p class="sa-review-text">
-        Sales Agent helped me discover potential
-        customers in my target location. It made
-        customer research easier and helped my
-        business generate new enquiries.
-    </p>
-
-    <div class="sa-review-date">
-        20 November 2026
-    </div>
-
-    <!-- Admin Reply -->
-
-    <div class="sa-admin-reply">
-
-        <div class="sa-admin-title">
-            Sales Agent – Admin Reply
-            <span class="badge bg-primary">Official</span>
-        </div>
-
-        <p class="sa-admin-text">
-            Thank you, Rahul, for trusting Sales Agent!
-            We're happy that our platform helped your
-            business discover new opportunities.
-            Wishing you continued success!
+        <p class="admin-text">
+          Thank you Rahul for trusting Sales Agent!
+          We wish your business continued success.
         </p>
 
-        <div class="sa-review-date">
-            21 November 2026
-        </div>
+        <div class="review-date">21 November 2026</div>
+      </div>
 
-    </div>
+    </div></td>
+    <td><div class="review-card" id="reviewTemplate">
 
-</div></td>
-    <td><!-- Put this card directly inside marquee TD -->
-
-<div class="sa-review-card">
-
-    <div class="sa-review-header">
-        <div class="sa-review-stars">★★★★★</div>
+      <div class="d-flex justify-content-between">
+        <span class="review-stars">★★★★★</span>
         <span class="badge bg-success">Verified</span>
-    </div>
+      </div>
 
-    <div class="sa-review-user">
-
-        <img
-            src="https://i.pravatar.cc/150?img=12"
-            class="sa-review-photo"
-            alt="Customer">
+      <div class="review-user">
+        <img src="https://i.pravatar.cc/150?img=12"
+             class="review-photo">
 
         <div>
-            <p class="sa-review-name">Rahul Sharma</p>
-            <div class="sa-review-shop">
-                Sharma Electronics
-            </div>
-            <small class="text-muted">
-                Kolkata, West Bengal
-            </small>
+          <p class="review-name">Rahul Sharma</p>
+          <div class="review-shop">Sharma Electronics</div>
+          <small>Kolkata, West Bengal</small>
+        </div>
+      </div>
+
+      <p class="review-text">
+        Sales Agent helped me discover potential customers
+        in my target location. It made customer research
+        easier and helped my business generate new enquiries.
+      </p>
+
+      <div class="review-date">20 November 2026</div>
+
+      <div class="admin-reply">
+        <div class="admin-title">
+          Sales Agent – Admin Reply
+          <span class="badge bg-primary">Official</span>
         </div>
 
-    </div>
-
-    <p class="sa-review-text">
-        Sales Agent helped me discover potential
-        customers in my target location. It made
-        customer research easier and helped my
-        business generate new enquiries.
-    </p>
-
-    <div class="sa-review-date">
-        20 November 2026
-    </div>
-
-    <!-- Admin Reply -->
-
-    <div class="sa-admin-reply">
-
-        <div class="sa-admin-title">
-            Sales Agent – Admin Reply
-            <span class="badge bg-primary">Official</span>
-        </div>
-
-        <p class="sa-admin-text">
-            Thank you, Rahul, for trusting Sales Agent!
-            We're happy that our platform helped your
-            business discover new opportunities.
-            Wishing you continued success!
+        <p class="admin-text">
+          Thank you Rahul for trusting Sales Agent!
+          We wish your business continued success.
         </p>
 
-        <div class="sa-review-date">
-            21 November 2026
-        </div>
+        <div class="review-date">21 November 2026</div>
+      </div>
 
-    </div>
+    </div></td>
+    <td><div class="review-card" id="reviewTemplate">
 
-</div></td>
-    <td><!-- Put this card directly inside marquee TD -->
-
-<div class="sa-review-card">
-
-    <div class="sa-review-header">
-        <div class="sa-review-stars">★★★★★</div>
+      <div class="d-flex justify-content-between">
+        <span class="review-stars">★★★★★</span>
         <span class="badge bg-success">Verified</span>
-    </div>
+      </div>
 
-    <div class="sa-review-user">
-
-        <img
-            src="https://i.pravatar.cc/150?img=12"
-            class="sa-review-photo"
-            alt="Customer">
+      <div class="review-user">
+        <img src="https://i.pravatar.cc/150?img=12"
+             class="review-photo">
 
         <div>
-            <p class="sa-review-name">Rahul Sharma</p>
-            <div class="sa-review-shop">
-                Sharma Electronics
-            </div>
-            <small class="text-muted">
-                Kolkata, West Bengal
-            </small>
+          <p class="review-name">Rahul Sharma</p>
+          <div class="review-shop">Sharma Electronics</div>
+          <small>Kolkata, West Bengal</small>
+        </div>
+      </div>
+
+      <p class="review-text">
+        Sales Agent helped me discover potential customers
+        in my target location. It made customer research
+        easier and helped my business generate new enquiries.
+      </p>
+
+      <div class="review-date">20 November 2026</div>
+
+      <div class="admin-reply">
+        <div class="admin-title">
+          Sales Agent – Admin Reply
+          <span class="badge bg-primary">Official</span>
         </div>
 
-    </div>
-
-    <p class="sa-review-text">
-        Sales Agent helped me discover potential
-        customers in my target location. It made
-        customer research easier and helped my
-        business generate new enquiries.
-    </p>
-
-    <div class="sa-review-date">
-        20 November 2026
-    </div>
-
-    <!-- Admin Reply -->
-
-    <div class="sa-admin-reply">
-
-        <div class="sa-admin-title">
-            Sales Agent – Admin Reply
-            <span class="badge bg-primary">Official</span>
-        </div>
-
-        <p class="sa-admin-text">
-            Thank you, Rahul, for trusting Sales Agent!
-            We're happy that our platform helped your
-            business discover new opportunities.
-            Wishing you continued success!
+        <p class="admin-text">
+          Thank you Rahul for trusting Sales Agent!
+          We wish your business continued success.
         </p>
 
-        <div class="sa-review-date">
-            21 November 2026
-        </div>
+        <div class="review-date">21 November 2026</div>
+      </div>
 
-    </div>
+    </div></td>
+    <td><div class="review-card" id="reviewTemplate">
 
-</div></td>
-    <td><!-- Put this card directly inside marquee TD -->
-
-<div class="sa-review-card">
-
-    <div class="sa-review-header">
-        <div class="sa-review-stars">★★★★★</div>
+      <div class="d-flex justify-content-between">
+        <span class="review-stars">★★★★★</span>
         <span class="badge bg-success">Verified</span>
-    </div>
+      </div>
 
-    <div class="sa-review-user">
-
-        <img
-            src="https://i.pravatar.cc/150?img=12"
-            class="sa-review-photo"
-            alt="Customer">
+      <div class="review-user">
+        <img src="https://i.pravatar.cc/150?img=12"
+             class="review-photo">
 
         <div>
-            <p class="sa-review-name">Rahul Sharma</p>
-            <div class="sa-review-shop">
-                Sharma Electronics
-            </div>
-            <small class="text-muted">
-                Kolkata, West Bengal
-            </small>
+          <p class="review-name">Rahul Sharma</p>
+          <div class="review-shop">Sharma Electronics</div>
+          <small>Kolkata, West Bengal</small>
+        </div>
+      </div>
+
+      <p class="review-text">
+        Sales Agent helped me discover potential customers
+        in my target location. It made customer research
+        easier and helped my business generate new enquiries.
+      </p>
+
+      <div class="review-date">20 November 2026</div>
+
+      <div class="admin-reply">
+        <div class="admin-title">
+          Sales Agent – Admin Reply
+          <span class="badge bg-primary">Official</span>
         </div>
 
-    </div>
-
-    <p class="sa-review-text">
-        Sales Agent helped me discover potential
-        customers in my target location. It made
-        customer research easier and helped my
-        business generate new enquiries.
-    </p>
-
-    <div class="sa-review-date">
-        20 November 2026
-    </div>
-
-    <!-- Admin Reply -->
-
-    <div class="sa-admin-reply">
-
-        <div class="sa-admin-title">
-            Sales Agent – Admin Reply
-            <span class="badge bg-primary">Official</span>
-        </div>
-
-        <p class="sa-admin-text">
-            Thank you, Rahul, for trusting Sales Agent!
-            We're happy that our platform helped your
-            business discover new opportunities.
-            Wishing you continued success!
+        <p class="admin-text">
+          Thank you Rahul for trusting Sales Agent!
+          We wish your business continued success.
         </p>
 
-        <div class="sa-review-date">
-            21 November 2026
-        </div>
+        <div class="review-date">21 November 2026</div>
+      </div>
 
-    </div>
-
-</div></td>
+    </div></td>
   </tr>
 </table>
     
